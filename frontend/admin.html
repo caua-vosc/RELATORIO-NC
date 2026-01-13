@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Admin</h1>
+
+<input type="password" id="password" placeholder="Password" />
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none">
+  <h2>Sections</h2>
+  <textarea id="labels" placeholder="One label per line"></textarea>
+  <button onclick="save()">Save</button>
+</div>
+
+<script>
+function login() {
+  if (password.value === "Nova@123") {
+    panel.style.display = "block";
+  } else alert("Invalid password");
+}
+
+function save() {
+  localStorage.setItem("sections", labels.value);
+  alert("Saved");
+}
+</script>
+
+</body>
+</html>
