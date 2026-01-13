@@ -1,0 +1,23 @@
+{
+  "name": "relatorio-nc",
+  "version": "1.0.0",
+  "description": "Projeto de Relatório RFI",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",           // Comando para rodar o servidor de desenvolvimento
+    "build": "next build",       // Comando para build do projeto
+    "start": "next start"        // Comando para rodar o projeto em produção
+  },
+  "dependencies": {
+    "axios": "^1.6.0",           // Para fazer requisições HTTP
+    "formidable": "^2.0.0",      // Para lidar com uploads de arquivos no backend
+    "next": "12.0.7",            // Next.js
+    "react": "^17.0.0",          // React para o frontend
+    "react-dom": "^17.0.0",      // React DOM
+    "dotenv": "^10.0.0",         // Para carregar variáveis de ambiente do arquivo .env
+    "cors": "^2.8.5"             // Para gerenciar CORS nas requisições entre frontend e backend
+  },
+  "devDependencies": {
+    "next-frontend": "^0.0.1"   // Se você tiver algum pacote de frontend que precise adicionar (dependendo da sua configuração)
+  }
+}
