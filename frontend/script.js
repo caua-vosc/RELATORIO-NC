@@ -15,10 +15,12 @@ document.getElementById("reportForm").onsubmit = async e => {
   e.preventDefault();
   const formData = new FormData(e.target);
 
-  await fetch("/api/submit-report", {
+  const response = await fetch("/api/submit-report", {
     method: "POST",
     body: formData
   });
 
-  alert("Report sent");
+  const data = await response.json();
+  if (data.success) alert("Relatório enviado com sucesso!");
+  else alert("Erro: " + data.error);
 };
