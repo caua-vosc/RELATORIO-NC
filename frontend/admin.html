@@ -9,27 +9,28 @@
 
 <h1>Admin</h1>
 
-<input type="password" id="password" placeholder="Password" />
+<input type="password" id="password" placeholder="Senha" />
 <button onclick="login()">Login</button>
 
 <div id="panel" style="display:none">
-  <h2>Sections</h2>
-  <textarea id="labels" placeholder="One label per line"></textarea>
-  <button onclick="save()">Save</button>
+  <h2>Seções do relatório</h2>
+  <textarea id="labels" placeholder="Uma legenda por linha"></textarea>
+  <button onclick="save()">Salvar</button>
 </div>
 
 <script>
 function login() {
   if (password.value === "Nova@123") {
     panel.style.display = "block";
-  } else alert("Invalid password");
+  } else alert("Senha incorreta");
 }
 
 function save() {
   localStorage.setItem("sections", labels.value);
-  alert("Saved");
+  alert("Seções salvas");
 }
 </script>
 
 </body>
 </html>
+
