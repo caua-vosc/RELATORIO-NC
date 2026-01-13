@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export default function Admin() {
   const [password, setPassword] = useState('');
   const [panelVisible, setPanelVisible] = useState(false);
@@ -14,6 +16,10 @@ export default function Admin() {
   const save = () => {
     localStorage.setItem('sections', labels);
     alert("Seções salvas");
+  };
+
+  const addSection = () => {
+    setLabels(labels + "\n" + "Nova Seção");
   };
 
   return (
@@ -37,6 +43,7 @@ export default function Admin() {
             placeholder="Uma legenda por linha" 
           />
           <button onClick={save}>Salvar</button>
+          <button onClick={addSection}>Adicionar Seção</button>
         </div>
       )}
     </div>
