@@ -1,5 +1,6 @@
 import formidable from "formidable";
 import axios from "axios";
+import fs from "fs";
 
 export const config = { api: { bodyParser: false } };
 
@@ -20,10 +21,10 @@ export default async function handler(req, res) {
 
     try {
       // Criar pasta do site
-      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}`, auth: AUTH });
+      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}`, auth: AUTH }).catch(() => {});
 
       // Criar pasta fotos
-      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}/fotos`, auth: AUTH });
+      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}/fotos`, auth: AUTH }).catch(() => {});
 
       // Salvar dados.json
       await axios.put(`${WEBDAV}${basePath}/dados.json`, JSON.stringify(fields, null, 2), {
@@ -32,14 +33,16 @@ export default async function handler(req, res) {
       });
 
       // Salvar fotos
-      const uploaded = Array.isArray(files.photos_0) ? files.photos_0 : [files.photos_0];
-      for (const file of uploaded) {
-        const fs = await import("fs");
-        const buffer = fs.readFileSync(file.filepath);
-        await axios.put(`${WEBDAV}${basePath}/fotos/${file.originalFilename}`, buffer, {
-          auth: AUTH,
-          headers: { "Content-Type": "application/octet-stream" }
-        });
+      for (const key in files) {
+        const uploaded = Array.isArray(files[key]) ? files[key] : [files[key]];
+
+        for (const file of uploaded) {
+          const buffer = fs.readFileSync(file.filepath);
+          await axios.put(`${WEBDAV}${basePath}/fotos/${file.originalFilename}`, buffer, {
+            auth: AUTH,
+            headers: { "Content-Type": "application/octet-stream" }
+          });
+        }
       }
 
       res.json({ success: true, siteId });
