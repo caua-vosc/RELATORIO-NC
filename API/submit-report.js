@@ -1,6 +1,6 @@
-import formidable from "formidable";
-import axios from "axios";
-import fs from "fs";
+import formidable from 'formidable';
+import axios from 'axios';
+import fs from 'fs';
 
 export const config = { api: { bodyParser: false } };
 
@@ -21,15 +21,15 @@ export default async function handler(req, res) {
 
     try {
       // Criar pasta do site
-      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}`, auth: AUTH }).catch(() => {});
+      await axios({ method: 'MKCOL', url: `${WEBDAV}${basePath}`, auth: AUTH }).catch(() => {});
 
       // Criar pasta fotos
-      await axios({ method: "MKCOL", url: `${WEBDAV}${basePath}/fotos`, auth: AUTH }).catch(() => {});
+      await axios({ method: 'MKCOL', url: `${WEBDAV}${basePath}/fotos`, auth: AUTH }).catch(() => {});
 
       // Salvar dados.json
       await axios.put(`${WEBDAV}${basePath}/dados.json`, JSON.stringify(fields, null, 2), {
         auth: AUTH,
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
       });
 
       // Salvar fotos
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
           const buffer = fs.readFileSync(file.filepath);
           await axios.put(`${WEBDAV}${basePath}/fotos/${file.originalFilename}`, buffer, {
             auth: AUTH,
-            headers: { "Content-Type": "application/octet-stream" }
+            headers: { 'Content-Type': 'application/octet-stream' }
           });
         }
       }
