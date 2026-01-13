@@ -1,42 +1,125 @@
-body {
-  font-family: Arial, sans-serif;
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 20px;
-}
-
-form {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-input, textarea, button {
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px;
-  font-size: 14px;
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  color: #007bff;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* Formulário */
+form {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #007bff;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
 button {
-  background-color: #007bff;
-  color: white;
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #007bff;
   border: none;
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
-  font-size: 16px;
+  transition: 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0056d4;
+}
+
+.status-text {
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* Seções */
+.sections-container > div.section {
+  margin-bottom: 25px;
+  border: 1px solid #e1e4e8;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+
+.sections-container h3 {
+  font-size: 18px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Imagens preview */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.image-preview img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 #panel {
