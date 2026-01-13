@@ -1,36 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Admin</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+export default function Admin() {
+  const [password, setPassword] = useState('');
+  const [panelVisible, setPanelVisible] = useState(false);
+  const [labels, setLabels] = useState(localStorage.getItem('sections') || '');
 
-<h1>Admin</h1>
+  const login = () => {
+    if (password === 'Nova@123') {
+      setPanelVisible(true);
+    } else {
+      alert("Senha incorreta");
+    }
+  };
 
-<input type="password" id="password" placeholder="Senha" />
-<button onclick="login()">Login</button>
+  const save = () => {
+    localStorage.setItem('sections', labels);
+    alert("Seções salvas");
+  };
 
-<div id="panel" style="display:none">
-  <h2>Seções do relatório</h2>
-  <textarea id="labels" placeholder="Uma legenda por linha"></textarea>
-  <button onclick="save()">Salvar</button>
-</div>
+  return (
+    <div>
+      <h1>Admin</h1>
+      <input 
+        type="password" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+        placeholder="Senha" 
+      />
+      <button onClick={login}>Login</button>
 
-<script>
-function login() {
-  if (password.value === "Nova@123") {
-    panel.style.display = "block";
-  } else alert("Senha incorreta");
+      {panelVisible && (
+        <div id="panel">
+          <h2>Seções do Relatório</h2>
+          <textarea 
+            id="labels" 
+            value={labels} 
+            onChange={(e) => setLabels(e.target.value)} 
+            placeholder="Uma legenda por linha" 
+          />
+          <button onClick={save}>Salvar</button>
+        </div>
+      )}
+    </div>
+  );
 }
-
-function save() {
-  localStorage.setItem("sections", labels.value);
-  alert("Seções salvas");
-}
-</script>
-
-</body>
-</html>
-
