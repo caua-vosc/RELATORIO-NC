@@ -1,26 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <title>RFI Report</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+import { useEffect, useState } from 'react';
 
-<h1>RFI Report</h1>
+export default function Home() {
+  const [sections, setSections] = useState([]);
 
-<form id="reportForm">
-  <label>Site ID</label>
-  <input name="siteId" required />
+  useEffect(() => {
+    const storedSections = localStorage.getItem('sections');
+    if (storedSections) {
+      setSections(storedSections.split("\n").filter(Boolean));
+    }
+  }, []);
 
-  <label>Técnico</label>
-  <input name="technician" required />
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
 
-  <div id="sections"></div>
+    const res = await fetch('/api/submit-report', {
+      method: 'POST',
+      body: formData,
+    });
 
-  <button type="submit">Enviar Relatório</button>
-</form>
+    const data = await res.json();
+    if (data.success) {
+      alert("Relatório enviado com sucesso!");
+    } else {
+      alert("Erro ao enviar relatório: " + data.error);
+    }
+  };
 
-<script src="script.js"></script>
-</body>
-</html>
+  return (
+    <div>
+      <h1>Relatório de RFI</h1>
+      <form id="reportForm" onSubmit={handleSubmit}>
+        <label>Site ID</label>
+        <input name="siteId" required />
+
+        <label>Técnico</label>
+        <input name="technician" required />
+
+        {sections.map((section, i) => (
+          <div key={i}>
+            <h3>{section}</h3>
+            <textarea name={`text_${i}`} required />
+            <input type="file" name={`photos_${i}`} multiple />
+          </div>
+        ))}
+
+        <button type="submit">Enviar Relatório</button>
+      </form>
+    </div>
+  );
+}
