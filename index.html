@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório RFI</title>
+  <link rel="stylesheet" href="style.css">  <!-- Referência ao CSS -->
+</head>
+<body>
+
+  <header>
+    <h1>📸 Relatório Fotográfico RFI</h1>
+  </header>
+
+  <main>
+    <form id="reportForm">
+      <div class="form-group">
+        <label for="siteId">📍 ID do Site</label>
+        <input type="text" id="siteId" name="siteId" required placeholder="Ex: SITE_123">
+      </div>
+
+      <div class="form-group">
+        <label for="technician">👤 Técnico</label>
+        <input type="text" id="technician" name="technician" required placeholder="Seu nome">
+      </div>
+
+      <div id="sections" class="sections-container"></div>
+
+      <button type="submit" class="btn-submit">📤 Enviar Relatório</button>
+      <div id="status" class="status-text"></div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>  <!-- Referência ao JavaScript -->
+</body>
+</html>
