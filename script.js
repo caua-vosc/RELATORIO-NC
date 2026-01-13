@@ -1,5 +1,6 @@
 const sectionsDiv = document.getElementById("sections");
 const labels = (localStorage.getItem("sections") || "").split("\n").filter(Boolean);
+
 let state = {};
 
 labels.forEach((label, i) => {
@@ -53,8 +54,8 @@ document.getElementById("reportForm").onsubmit = async e => {
   status.innerText = "Enviando...";
 
   try {
-    const res = await fetch(BACKEND_URL, {
-      method: "POST",
+    const res = await fetch('/api/submit-report', {
+      method: 'POST',
       body: formData
     });
     const data = await res.json();
@@ -65,4 +66,3 @@ document.getElementById("reportForm").onsubmit = async e => {
     status.innerText = "Erro no envio";
   }
 };
-
