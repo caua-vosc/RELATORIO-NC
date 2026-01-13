@@ -23,7 +23,6 @@
   <div id="adminPanel" style="display:none;">
     <h2>Gerenciar Seções do Relatório</h2>
 
-    <!-- Área para editar e salvar as seções -->
     <textarea id="sections" placeholder="Adicione ou edite as seções, uma por linha..."></textarea>
     <button onclick="saveSections()">Salvar Seções</button>
 
@@ -32,12 +31,10 @@
   </div>
 
   <script>
-    // Função de login
     function login() {
       const password = document.getElementById('password').value;
 
       if (password === "Nova@123") {
-        // Mostra o painel de administração se a senha estiver correta
         document.getElementById('adminPanel').style.display = 'block';
         document.getElementById('loginForm').style.display = 'none';
         loadSections();
@@ -46,7 +43,6 @@
       }
     }
 
-    // Função para carregar as seções armazenadas no localStorage
     function loadSections() {
       const sections = localStorage.getItem("sections");
       if (sections) {
@@ -54,23 +50,17 @@
       }
     }
 
-    // Função para salvar as seções no localStorage
     function saveSections() {
       const sections = document.getElementById('sections').value;
       localStorage.setItem("sections", sections);
-      alert("Seções salvas com sucesso!");
+      alert("Seções salvas");
     }
 
-    // Função para adicionar uma nova seção
     function addSection() {
       const sections = document.getElementById('sections').value;
       document.getElementById('sections').value = sections + "\nNova Seção";
     }
   </script>
-
-</body>
-</html>
-
 
 </body>
 </html>
